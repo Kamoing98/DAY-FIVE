@@ -9,22 +9,18 @@
 - **Description:** Returns a list of all books in the library.
 - **Success Status Code:** `200 OK`
 
----
-
-### 2. Get a Single Book
+### 2. Get One Book
 
 - **Method:** `GET`
 - **Path:** `/api/books/:id`
-- **Description:** Returns the details of a specific book by its ID.
+- **Description:** Returns the details of a single book identified by its ID.
 - **Success Status Code:** `200 OK`
 
----
-
-### 3. Create a New Book
+### 3. Create a Book
 
 - **Method:** `POST`
 - **Path:** `/api/books`
-- **Description:** Adds a new book to the library catalog.
+- **Description:** Creates a new book and adds it to the library catalog.
 - **Request Body:**
   ```json
   {
@@ -36,8 +32,6 @@
   }
   ```
 - **Success Status Code:** `201 Created`
-
----
 
 ### 4. Update a Book
 
@@ -56,8 +50,6 @@
   ```
 - **Success Status Code:** `200 OK`
 
----
-
 ### 5. Delete a Book
 
 - **Method:** `DELETE`
@@ -65,14 +57,12 @@
 - **Description:** Removes a book from the library catalog by its ID.
 - **Success Status Code:** `204 No Content`
 
----
-
 ### 6. List Books by Author
 
 - **Method:** `GET`
 - **Path:** `/api/books?author=:authorName`
 - **Description:** Returns all books written by a specific author using a query parameter.
-- **Example:** `GET /api/books?author=Fitzgerald`
+- **Example Request:** `GET /api/books?author=Fitzgerald`
 - **Success Status Code:** `200 OK`
 
 ---
@@ -81,22 +71,10 @@
 
 ### 400 Bad Request
 
-- **When it happens:** The request body is missing required fields or contains invalid data (e.g., creating a book without a title, or providing a non-numeric year).
-- **Example:**
-  ```json
-  {
-    "error": "Bad Request",
-    "message": "Field 'title' is required and cannot be empty."
-  }
-  ```
+- **When it happens:** The request body is missing required fields or contains invalid data.
+- **Example:** Sending a `POST /api/books` request without the required `title` field, or providing a non-numeric value for `year`.
 
 ### 404 Not Found
 
-- **When it happens:** The requested resource does not exist (e.g., trying to get, update, or delete a book with an ID that is not in the database).
-- **Example:**
-  ```json
-  {
-    "error": "Not Found",
-    "message": "Book with ID '999' does not exist."
-  }
-  ```
+- **When it happens:** The requested resource does not exist in the database.
+- **Example:** Sending a `GET /api/books/999` request for a book ID that does not exist.
